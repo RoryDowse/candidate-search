@@ -17,11 +17,17 @@ const CandidateSearch = () => {
 // State to hold the list of candidates
 const [candidates, setCandidates] = useState<Candidate[]>([]);
 
+// State to hold the index of the current candidate
+const [currentIndex, setCurrentIndex] = useState<number>(0);
+
 // State to handle the search input
 const [searchInput, setSearchInput] = useState<string>('');
 
 // State for errors
 const [error, setError] = useState<string | null>(null);
+
+// State for no more candidates message
+const [noMoreCandidates, setNoMoreCandidates] = useState<boolean>(false);
 
 // Fetch candidates from GitHub API on component mount
 useEffect(() => {
@@ -89,8 +95,42 @@ const handleSearch = async () => {
   }
 };
 
+// Common function to handle moving to the next candidate
+const moveToNext = () => {
+
+  if (noMoreCandidates) {
+    setError('No more candidates');
+    return;
+  }
+
+  if (candidates.length === 0) {
+    setError('No candidates available.');
+    return;
+  }
+  
+  if (currentIndex + 1 < candidates.length) {
+    const nextIndex = currentIndex +1;
+    setCurrentCandidate(candidates[nextIndex]);
+    setCurrentIndex(nextIndex);
+  } else {
+    setNoMoreCandidates(true);
+  }
+}
+
 // Save candidate to local storage
 const saveCandidate = () => {
+
+  if (noMoreCandidates) {
+    setError('No more candidates');
+    return;
+  }
+
+  if (candidates.length === 0) {
+    setError('No candidates available.');
+    return;
+  }
+ 
+  console.log('Saving candidate:', currentCandidate);
   let parsedCandidates: Candidate[] = [];
   const storedCandidates = localStorage.getItem('candidates');
   if (typeof storedCandidates === 'string') {
@@ -98,6 +138,10 @@ const saveCandidate = () => {
   }
   parsedCandidates.push(currentCandidate);
   localStorage.setItem('candidates', JSON.stringify(parsedCandidates));
+  console.log('Candidates in localStorage:', JSON.parse(localStorage. getItem('candidates') as string));
+
+  // Move to the next candidate
+  moveToNext();
 };
 
 
@@ -120,7 +164,8 @@ return (
       {/* Display Current Candidate */}
       {currentCandidate && (
         <div>
-          <h2>{currentCandidate.name} {currentCandidate.login}</h2>
+          <h2>{`${currentCandidate.name} (${currentCandidate.login})`}
+          </h2>
           <img src={currentCandidate.avatar_url as string} alt="Avatar" />
           <p>Location: {currentCandidate.location}</p>
           <p>Email: {currentCandidate.email}</p>
@@ -129,8 +174,11 @@ return (
         </div>
       )}
 
+      {/* Move to Next Candidate Without Saving Button */}
+      <button onClick={moveToNext}>-</button>
+
       {/* Save Button */}
-      <button onClick={saveCandidate}>Save Candidate</button>
+      <button onClick={saveCandidate}>+</button>
   </section>
 );
 }
