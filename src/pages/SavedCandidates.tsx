@@ -27,11 +27,11 @@ useEffect(() => {
           {candidates.map((candidate) => (
             <li>
               <img src={candidate.avatar_url as string} alt={candidate.name as string} />
-              <h2>`{candidate.name} ({candidate.login})`</h2>
+              <h2>{`${candidate.name} (${candidate.login})`}</h2>
               <p>{candidate.location}</p>
               <p>{candidate.email}</p>
-              <a href={candidate.html_url as string}>View Profile</a>
               <p>{candidate.company}</p>
+              <p><a href={candidate.html_url as string} target="_blank" rel="noopener noreferrer">{candidate.html_url}</a></p>
             </li>
           ))}
         </ul>
