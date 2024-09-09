@@ -12,6 +12,7 @@ const CandidateSearch = () => {
     email: '',
     html_url: '',
     company: '',
+    bio: '',
 });
 
 // State to hold the list of candidates
@@ -43,6 +44,7 @@ useEffect(() => {
         email: user.email || 'No email available',
         html_url: user.html_url || 'No address available',
         company: user.company || 'No company available',
+        bio: user.bio || 'No bio available',
       }));
       setCandidates(fetchedCandidates);
       console.log(candidates);
@@ -74,6 +76,7 @@ const handleSearch = async () => {
         email: '',
         html_url: '',
         company: '',
+        bio: '',
       });
     } else {
       // Map user data to Candidate interface
@@ -85,6 +88,7 @@ const handleSearch = async () => {
         email: userData.email || 'No email available',
         html_url: userData.html_url || 'No address available',
         company: userData.company || 'No company available',
+        bio: userData.bio || 'No bio available',
       };
       setCurrentCandidate(fetchedCandidates);
       setError(null);
@@ -171,6 +175,7 @@ return (
           <p>Email: {currentCandidate.email}</p>
           <p>Company: {currentCandidate.company}</p>
           <p>GitHub URL: <a href={currentCandidate.html_url as string} target="_blank" rel="noopener noreferrer">{currentCandidate.html_url}</a></p>
+          <p>Bio: {currentCandidate.bio}</p>
         </div>
       )}
 

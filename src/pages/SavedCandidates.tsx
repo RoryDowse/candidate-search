@@ -69,15 +69,16 @@ useEffect(() => {
                 return (a.company ?? '').localeCompare(b.company as string);
               return 0;
             })
-          .map((candidate) => (
-            <li>
-              <img src={candidate.avatar_url as string} alt={candidate.name as string} />
-              <h2>{`${candidate.name} (${candidate.login})`}</h2>
-              <p>{candidate.location}</p>
-              <p>{candidate.email}</p>
-              <p>{candidate.company}</p>
-              <p><a href={candidate.html_url as string} target="_blank" rel="noopener noreferrer">{candidate.html_url}</a></p>
-            </li>
+            .map((candidate) => (
+              <li>
+                <img src={candidate.avatar_url as string} alt={candidate.name as string} />
+                <h2>{`${candidate.name} (${candidate.login})`}</h2>
+                <p>{candidate.location}</p>
+                <p>{candidate.email}</p>
+                <p>{candidate.company}</p>
+                <p><a href={candidate.html_url as string} target="_blank" rel="noopener noreferrer">{candidate.html_url}</a></p>
+                <p>{candidate.bio}</p>
+              </li>
           ))}
         </ul>
       )}
