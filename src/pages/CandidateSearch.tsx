@@ -152,10 +152,10 @@ const saveCandidate = () => {
 
 return (
   <section className="container mt-5">
-    <h1 className="text-center mb-4 display-4"> Candidate Search</h1>
+    <h1 className="text-center mb-5 display-4"> Candidate Search</h1>
 
     {/* Search Form */}
-    <div className="container mb-4">
+    <div className="container mb-5">
       <div className="form">
         <div className="dol-12 d-flex justify-content-center">
       <input
@@ -170,24 +170,24 @@ return (
     </div>
 
       {/* Error Message */}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'red', textAlign: 'center' }} className="mt-4">{error}</p>}
 
       {/* Display Current Candidate */}
       {currentCandidate && (
-        <div className="container-fluid p-0 mb-3">
+        <div className="container-fluid p-0 mb-4">
           <div className="row no-gutters justify-content-center">
             <div className="col-12 col-md-8 col-lg-3 p-0">
               <div 
                 className="bg-dark text-white p-0"
-                style={{ borderRadius: '1.5rem' }} // Consistent border-radius for all corners
+                style={{ borderRadius: '1.5rem' }} 
               >
                 <img 
                   src={currentCandidate.avatar_url as string} 
                   alt="Avatar" 
-                  className="img-fluid w-80"
+                  className="img-fluid w-90"
                   style={{ 
                     objectFit: 'cover', 
-                    borderRadius: '1.5rem 1.5rem 0 0' // Match the top border-radius of the container
+                    borderRadius: '1.5rem 1.5rem 0 0' 
                   }} 
                 />
                 <div className="card-body p-3">
@@ -205,9 +205,8 @@ return (
 
       )}
 
-<div>
-      {/* Other content */}
-      <div className="d-flex justify-content-center gap-5">
+      {/* Fixed Position Buttons */}
+      <div className="d-flex justify-content-center gap-5 mb-5">
         <button
           className="btn btn-danger btn-sm rounded-circle"
           style={{ width: '80px', height: '80px', fontSize: '2rem' }}
@@ -224,7 +223,6 @@ return (
           +
         </button>
       </div>
-    </div>
   </section>
 );
 }

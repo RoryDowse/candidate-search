@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Candidate from '../interfaces/Candidate.interface';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SavedCandidates = () => {
   
@@ -78,7 +77,6 @@ useEffect(() => {
                 <p>{candidate.email}</p>
                 <p>{candidate.company}</p>
                 <p><a href={candidate.html_url as string} target="_blank" rel="noopener noreferrer">{candidate.html_url}</a></p>
-                <p>{candidate.bio}</p>
               </li>
           ))}
         </ul>
