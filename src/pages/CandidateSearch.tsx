@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { searchGithub, searchGithubUser } from '../api/API';
 import Candidate from '../interfaces/Candidate.interface';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CandidateSearch = () => {
   // State to hold current candidate
@@ -150,40 +151,80 @@ const saveCandidate = () => {
 
 
 return (
-  <section>
-    <h1> Candidate Search</h1>
+  <section className="container mt-5">
+    <h1 className="text-center mb-4 display-4"> Candidate Search</h1>
 
     {/* Search Form */}
-    <input
-      type="text"
-      placeholder="Search GitHub User"
-      value={searchInput}
-      onChange={(e) => setSearchInput(e.target.value)}
-      />
-      <button onClick={handleSearch}>Search</button>
+    <div className="container mb-4">
+      <div className="form">
+        <div className="dol-12 d-flex justify-content-center">
+      <input
+        type="text"
+        placeholder="Search GitHub User"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        />
+        <button className="btn btn-primary" onClick={handleSearch}>Search</button>
+        </div>
+      </div>
+    </div>
 
       {/* Error Message */}
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       {/* Display Current Candidate */}
       {currentCandidate && (
-        <div>
-          <h2>{`${currentCandidate.name} (${currentCandidate.login})`}
-          </h2>
-          <img src={currentCandidate.avatar_url as string} alt="Avatar" />
-          <p>Location: {currentCandidate.location}</p>
-          <p>Email: {currentCandidate.email}</p>
-          <p>Company: {currentCandidate.company}</p>
-          <p>GitHub URL: <a href={currentCandidate.html_url as string} target="_blank" rel="noopener noreferrer">{currentCandidate.html_url}</a></p>
-          <p>Bio: {currentCandidate.bio}</p>
+        <div className="container-fluid p-0 mb-3">
+          <div className="row no-gutters justify-content-center">
+            <div className="col-12 col-md-8 col-lg-3 p-0">
+              <div 
+                className="bg-dark text-white p-0"
+                style={{ borderRadius: '1.5rem' }} // Consistent border-radius for all corners
+              >
+                <img 
+                  src={currentCandidate.avatar_url as string} 
+                  alt="Avatar" 
+                  className="img-fluid w-80"
+                  style={{ 
+                    objectFit: 'cover', 
+                    borderRadius: '1.5rem 1.5rem 0 0' // Match the top border-radius of the container
+                  }} 
+                />
+                <div className="card-body p-3">
+                  <h2 className="card-title mb-3">{`${currentCandidate.name} (${currentCandidate.login})`}</h2>
+                  <p className="card-text mb-3">Location: {currentCandidate.location}</p>
+                  <p className="card-text mb-3">Email: {currentCandidate.email}</p>
+                  <p className="card-text mb-4">Company: {currentCandidate.company}</p>
+                  <p className="card-text mb-3">GitHub URL: <a href={currentCandidate.html_url as string} target="_blank" rel="noopener noreferrer" className="text-white">{currentCandidate.html_url}</a></p>
+                  <p className="card-text mb-2">Bio: {currentCandidate.bio}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
       )}
 
-      {/* Move to Next Candidate Without Saving Button */}
-      <button onClick={moveToNext}>-</button>
+<div>
+      {/* Other content */}
+      <div className="d-flex justify-content-center gap-5">
+        <button
+          className="btn btn-danger btn-sm rounded-circle"
+          style={{ width: '80px', height: '80px', fontSize: '2rem' }}
+          onClick={moveToNext}
+        >
+          -
+        </button>
 
-      {/* Save Button */}
-      <button onClick={saveCandidate}>+</button>
+        <button
+          className="btn btn-success btn-sm rounded-circle"
+          style={{ width: '80px', height: '80px', fontSize: '2rem' }}
+          onClick={saveCandidate}
+        >
+          +
+        </button>
+      </div>
+    </div>
   </section>
 );
 }

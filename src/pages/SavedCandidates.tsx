@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Candidate from '../interfaces/Candidate.interface';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const SavedCandidates = () => {
   
