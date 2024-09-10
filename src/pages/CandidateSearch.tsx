@@ -152,7 +152,7 @@ const saveCandidate = () => {
 
 return (
   <section className="container mt-5">
-    <h1 className="text-center mb-5 display-4"> Candidate Search</h1>
+    <h1 className="text-center mb-5 display-4">Candidate Search</h1>
 
     {/* Search Form */}
     <div className="container mb-5">
@@ -174,7 +174,7 @@ return (
 
       {/* Display Current Candidate */}
       {currentCandidate && (
-        <div className="container-fluid p-0 mb-4">
+        <div className="container-fluid p-0 mb-4" style={{ wordWrap: 'break-word' }}>
           <div className="row no-gutters justify-content-center">
             <div className="col-12 col-md-8 col-lg-3 p-0">
               <div 
@@ -208,15 +208,15 @@ return (
       {/* Fixed Position Buttons */}
       <div className="d-flex justify-content-center gap-5 mb-5">
         <button
-          className="btn btn-danger btn-sm rounded-circle"
+          className="btn btn-danger btn-sm rounded-circle text-dark"
           style={{ width: '80px', height: '80px', fontSize: '2rem' }}
           onClick={moveToNext}
         >
-          -
+          –
         </button>
 
         <button
-          className="btn btn-success btn-sm rounded-circle"
+          className="btn btn-success btn-sm rounded-circle text-dark"
           style={{ width: '80px', height: '80px', fontSize: '2rem' }}
           onClick={saveCandidate}
         >
