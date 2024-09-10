@@ -7,10 +7,10 @@ const Nav = () => {
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/" end>Candidate Search</NavLink>
+            <NavLink className="nav-link" to="/" end>Home</NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/SavedCandidates">Saved Candidates</NavLink>
+            <NavLink className="nav-link" to="/SavedCandidates">Potential Candidates</NavLink>
           </li>
         </ul>
       </div>
